@@ -1,0 +1,45 @@
+{
+  "definitions": [],
+  "models": [
+    {
+      "id": "structured-content",
+      "fields": [
+        { "component": "text-input", "name": "slug", "label": "Content Slug", "valueType": "string", "value": "" }
+      ]
+    },
+    {
+      "id": "data-table",
+      "fields": [
+        { "component": "text-input", "name": "source", "label": "Data Source URL or DA Path", "valueType": "string", "value": "" },
+        {
+          "component": "select", "name": "style", "label": "Table Style", "valueType": "string",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Striped", "value": "striped" },
+            { "name": "Compact", "value": "compact" },
+            { "name": "Full Width", "value": "full-width" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "comparison-table",
+      "fields": [
+        { "component": "text-input", "name": "source", "label": "Data Source URL or DA Path", "valueType": "string", "value": "" },
+        {
+          "component": "select", "name": "chartType", "label": "Default Chart", "valueType": "string",
+          "options": [
+            { "name": "Hidden", "value": "" },
+            { "name": "Auto-detect", "value": "chart" },
+            { "name": "Bar Chart", "value": "bar-chart" },
+            { "name": "Line Chart", "value": "line-chart" },
+            { "name": "Scatter", "value": "scatter-chart" },
+            { "name": "3D Bar", "value": "3d-bar-chart" },
+            { "name": "3D Scatter", "value": "3d-scatter-chart" }
+          ]
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -1,0 +1,14 @@
+{
+  "definitions": [],
+  "models": [],
+  "filters": [
+    {
+      "id": "section",
+      "components": [
+        "text", "image", "button", "hero", "card", "columns",
+        "fragment", "youtube", "table", "advanced-tabs", "section-metadata",
+        "structured-content", "data-table", "comparison-table"
+      ]
+    }
+  ]
+}
