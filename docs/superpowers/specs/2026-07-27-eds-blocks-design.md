@@ -145,8 +145,13 @@ Updates block DOM on selection. In Canvas/WYSIWYG the author sees it immediately
 
 ### Component registration
 
-- `component-definition.json` — block browser entries (display name, icon, category) for all three new blocks
-- `component-models.json` — field models for Universal Editor / Canvas
+Each block gets its own `_<block>.json` inside its block folder (the per-block source of truth per EDS convention). These are manually aggregated into root-level files since this project has no auto-aggregation tooling yet.
+
+- `blocks/<name>/_<name>.json` — per-block definitions + models + filters (resourceType: `core/franklin/components/block/v1/block`)
+- `component-definition.json` — aggregated block browser entries
+- `component-models.json` — aggregated field models for Universal Editor / Canvas
+- `component-filters.json` — aggregated filters (empty for non-container blocks)
+- `models/_section.json` — adds new block IDs to the section allowlist so authors can insert them in Universal Editor
 
 ### Files
 
@@ -295,23 +300,29 @@ All four pages created under `demo/structured-content/` via DA MCP.
 ```
 blocks/
   structured-content/
-    structured-content.js
-    structured-content.css
+    structured-content.js      (new)
+    structured-content.css     (new)
+    _structured-content.json   (new — UE block definition)
   data-table/
-    data-table.js
-    data-table.css
+    data-table.js              (new)
+    data-table.css             (new)
+    _data-table.json           (new — UE block definition)
   comparison-table/
-    comparison-table.js
-    comparison-table.css
+    comparison-table.js        (new)
+    comparison-table.css       (new)
+    _comparison-table.json     (new — UE block definition)
 scripts/utils/
-  table-data.js          (new)
-  chart-engine.js        (new)
-  schema-hints.js        (new)
+  table-data.js                (new)
+  chart-engine.js              (new)
+  schema-hints.js              (new)
 tools/block-wizard/
-  block-wizard.html      (new)
-  block-wizard.js        (new)
-component-definition.json  (new)
-component-models.json      (new)
+  block-wizard.html            (new)
+  block-wizard.js              (new)
+models/
+  _section.json                (new — adds new blocks to section allowlist)
+component-definition.json      (new — manually aggregated)
+component-models.json          (new — manually aggregated)
+component-filters.json         (new — manually aggregated, filters empty)
 docs/superpowers/specs/
   2026-07-27-eds-blocks-design.md  (this file)
 ```
