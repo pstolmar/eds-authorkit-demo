@@ -127,12 +127,13 @@ scripts/utils/schema-hints.js
 
 ### Empty-state setup UI
 
-When block has no content configured, renders an interactive setup panel:
+When block has no content configured, renders an interactive setup panel. Applies to both `data-table` and `comparison-table` (comparison-table adds chart-type default to the chooser):
 
 - **Create New** → scaffolds an inline table the author starts typing into
 - **Choose** → path input + simple DA Live path browser (lists available sheets under repo)
 - **Upload** → file picker accepting `.xlsx` or `.csv`
 - Style chooser: Default / Striped / Compact / Full-width
+- *(comparison-table only)* Chart type default: Auto / Bar / Line / Scatter / 3D Bar / 3D Scatter / Hidden
 
 Updates block DOM on selection. In Canvas/WYSIWYG the author sees it immediately.
 
