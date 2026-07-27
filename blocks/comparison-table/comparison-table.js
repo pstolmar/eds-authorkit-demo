@@ -183,25 +183,25 @@ function buildChartControls(chartConfig, chartEl, data) {
 
 function renderEmptyState(el) {
   const panel = document.createElement('div');
-  panel.className = 'dt-setup-panel';
+  panel.className = 'ct-setup-panel';
   panel.innerHTML = `
-    <h3 class="dt-setup-title">Set up Comparison Table</h3>
-    <div class="dt-setup-options">
-      <button class="dt-opt" data-action="choose" type="button">
-        <span class="dt-opt-icon">&#x1F4C2;</span>
+    <h3 class="ct-setup-title">Set up Comparison Table</h3>
+    <div class="ct-setup-options">
+      <button class="ct-opt" data-action="choose" type="button">
+        <span class="ct-opt-icon">&#x1F4C2;</span>
         <strong>Choose Sheet</strong>
         <small>Multi-sheet DA path or xlsx</small>
       </button>
-      <label class="dt-opt">
-        <span class="dt-opt-icon">&#x1F4E4;</span>
+      <label class="ct-opt">
+        <span class="ct-opt-icon">&#x1F4E4;</span>
         <strong>Upload Excel</strong>
         <small>.xlsx or .csv (each tab = one column)</small>
         <input type="file" accept=".xlsx,.csv" hidden>
       </label>
     </div>
-    <div class="dt-style-row">
+    <div class="ct-style-row">
       <label>Default chart:
-        <select class="dt-chart-default">
+        <select class="ct-chart-default">
           <option value="">Hidden</option>
           <option value="chart">Auto-detect</option>
           <option value="bar-chart">Bar Chart</option>
@@ -217,6 +217,8 @@ function renderEmptyState(el) {
     // eslint-disable-next-line no-alert
     const path = window.prompt('Enter DA Live path to multi-sheet workbook:');
     if (!path) return;
+    const variant = panel.querySelector('.ct-chart-default')?.value;
+    if (variant) el.classList.add(variant);
     panel.remove();
     const inner = document.createElement('div');
     const a = document.createElement('a');
@@ -232,8 +234,12 @@ function renderEmptyState(el) {
     const [file] = e.target.files;
     if (!file) return;
     const data = await loadFromFile(file);
-    // eslint-disable-next-line no-use-before-define
-    if (data) { panel.remove(); renderComparison(el, data); }
+    if (data) {
+      const variant = panel.querySelector('.ct-chart-default')?.value;
+      if (variant) el.classList.add(variant);
+      // eslint-disable-next-line no-use-before-define
+      panel.remove(); renderComparison(el, data);
+    }
   });
 
   el.append(panel);

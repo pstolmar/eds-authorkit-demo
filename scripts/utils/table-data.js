@@ -44,11 +44,14 @@ function xlsxSheetToRows(ws) {
 
 function makeSheet(name, allRows) {
   const headers = allRows[0] || [];
-  const rows = allRows.slice(1).filter((r) => !headers[0] || r[0] !== '_best');
+  const rows = allRows.slice(1).filter((r) => !headers[0] || !r[0]?.startsWith('_best'));
   const bestHints = {};
   allRows.slice(1).forEach((r) => {
     if (r[0] === '_best') {
       headers.slice(1).forEach((h, i) => { bestHints[h] = r[i + 1]; });
+    } else if (r[0]?.startsWith('_best_')) {
+      const [key, val] = r;
+      bestHints[key.slice(6)] = val;
     }
   });
   return {

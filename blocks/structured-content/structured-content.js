@@ -13,7 +13,7 @@ function getOwnerRepo() {
 
 async function fetchSC(slug) {
   const { owner, repo } = getOwnerRepo();
-  const url = `https://da-sc.adobeaem.workers.dev/live/${owner}/${repo}/structured/${slug}`;
+  const url = `https://da-sc.adobeaem.workers.dev/live/${owner}/${repo}/structured/${encodeURIComponent(slug)}`;
   const resp = await fetch(url);
   if (!resp.ok) throw new Error(`${resp.status}`);
   return resp.json();

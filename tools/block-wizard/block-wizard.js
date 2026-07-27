@@ -16,7 +16,8 @@ function getDataTableMarkup() {
   if (source === 'inline') return buildBlockMarkup('data-table', variants, '<!-- author your table here -->');
   if (source === 'sheet') {
     const path = document.getElementById('dt-path').value.trim();
-    return buildBlockMarkup('data-table', variants, `<a href="${path}">${path}</a>`);
+    const safePath = path.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    return buildBlockMarkup('data-table', variants, `<a href="${safePath}">${safePath}</a>`);
   }
   return buildBlockMarkup('data-table', variants, '<!-- upload file and paste URL here -->');
 }
@@ -27,7 +28,8 @@ function getComparisonMarkup() {
   const variants = [chart];
   const path = document.getElementById('ct-path').value.trim();
   if (source === 'sheet' && path) {
-    return buildBlockMarkup('comparison-table', variants, `<a href="${path}">${path}</a>`);
+    const safePath = path.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    return buildBlockMarkup('comparison-table', variants, `<a href="${safePath}">${safePath}</a>`);
   }
   return buildBlockMarkup('comparison-table', variants, '<!-- add data source link here -->');
 }
@@ -45,9 +47,9 @@ function generateMarkup() {
 }
 
 function tryInsertViaPostMessage(markup) {
-  window.parent.postMessage({ type: 'insertContent', content: markup }, '*');
+  window.parent.postMessage({ type: 'insertContent', content: markup }, 'https://da.live');
   // DA Live uses 'contentUpdate' in some versions — send both
-  window.parent.postMessage({ type: 'contentUpdate', html: markup }, '*');
+  window.parent.postMessage({ type: 'contentUpdate', html: markup }, 'https://da.live');
 }
 
 // Tab switching
