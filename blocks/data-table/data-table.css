@@ -1,0 +1,107 @@
+.data-table {
+  max-width: var(--grid-container-width);
+  margin: var(--spacing-xl) auto;
+
+  .dt-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--color-gray-200);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--body-font-size-s);
+  }
+
+  thead {
+    background: light-dark(var(--color-gray-900), var(--color-gray-800));
+    color: light-dark(var(--color-light), var(--color-light));
+
+    th {
+      padding: var(--spacing-s) var(--spacing-m);
+      text-align: left;
+      font-weight: 600;
+      white-space: nowrap;
+      user-select: none;
+
+      &:hover { background: light-dark(var(--color-gray-700), var(--color-gray-600)); }
+      &[aria-sort="ascending"]::after { content: ' ↑'; }
+      &[aria-sort="descending"]::after { content: ' ↓'; }
+    }
+  }
+
+  tbody {
+    tr { border-block-end: 1px solid var(--color-gray-200); }
+    td { padding: var(--spacing-s) var(--spacing-m); }
+  }
+
+  &.striped tbody tr:nth-child(even) {
+    background: var(--color-shaded);
+  }
+
+  &.compact {
+    thead th,
+    tbody td { padding: var(--spacing-xs) var(--spacing-s); }
+
+    font-size: var(--body-font-size-xs);
+  }
+
+  &.full-width { max-width: 100%; }
+
+  /* Setup panel */
+  .dt-setup-panel {
+    border: 2px dashed var(--color-gray-300);
+    border-radius: 8px;
+    padding: var(--spacing-xl);
+    text-align: center;
+  }
+
+  .dt-setup-title {
+    margin: 0 0 var(--spacing-l);
+    font-size: var(--heading-font-size-xs);
+  }
+
+  .dt-setup-options {
+    display: flex;
+    gap: var(--spacing-m);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-block-end: var(--spacing-l);
+  }
+
+  .dt-opt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-l);
+    border: 1px solid var(--color-gray-300);
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+    min-width: 120px;
+    text-decoration: none;
+    color: inherit;
+    font: inherit;
+
+    &:hover {
+      border-color: var(--color-brand);
+      background: var(--color-purple-100);
+    }
+
+    .dt-opt-icon { font-size: 2em; }
+
+    small {
+      color: var(--color-gray-500);
+      font-size: var(--body-font-size-xs);
+    }
+  }
+
+  .dt-style-row { font-size: var(--body-font-size-s); }
+
+  .dt-hint {
+    color: var(--color-gray-500);
+    font-style: italic;
+  }
+}
