@@ -95,6 +95,12 @@
     &.ct-focus { outline: 2px solid var(--color-brand); outline-offset: -2px; }
   }
 
+  tbody tr:nth-child(even) td { background: light-dark(var(--color-gray-100), var(--color-gray-800)); }
+
+  tbody tr:nth-child(even) td.ct-best { background: var(--color-green-100); }
+
+  tbody tr:nth-child(even) td.ct-featured-col { background: light-dark(var(--color-purple-100), var(--color-purple-900)); }
+
   thead th.ct-focus { outline: 2px solid var(--color-brand); outline-offset: -2px; }
 
   .ct-chart-bar {

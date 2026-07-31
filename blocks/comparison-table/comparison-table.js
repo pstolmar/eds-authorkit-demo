@@ -202,13 +202,13 @@ function renderEmptyState(el) {
     <div class="ct-style-row">
       <label>Default chart:
         <select class="ct-chart-default">
-          <option value="">Hidden</option>
-          <option value="chart">Auto-detect</option>
+          <option value="chart" selected>Auto-detect</option>
           <option value="bar-chart">Bar Chart</option>
           <option value="line-chart">Line Chart</option>
           <option value="scatter-chart">Scatter</option>
           <option value="3d-bar-chart">3D Bar</option>
           <option value="3d-scatter-chart">3D Scatter</option>
+          <option value="">Hidden</option>
         </select>
       </label>
     </div>`;
