@@ -209,7 +209,8 @@ async function initMulti(el, slugs) {
 }
 
 export default async function init(el) {
-  const slugs = el.textContent.trim().split(/[\n,]+/).map((s) => s.trim()).filter(Boolean);
+  const text = (el.innerText || el.textContent || '').trim();
+  const slugs = text.split(/[\n,]+/).map((s) => s.trim()).filter(Boolean);
   if (!slugs.length) return;
 
   if (slugs.length === 1) {
