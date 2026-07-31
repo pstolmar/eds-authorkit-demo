@@ -1,12 +1,22 @@
+const scriptPromises = new Map();
 function loadScript(src) {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
+  if (scriptPromises.has(src)) return scriptPromises.get(src);
+  const existing = document.querySelector(`script[src="${src}"]`);
+  if (existing?.dataset.loaded) return Promise.resolve();
+  const p = new Promise((resolve, reject) => {
+    if (existing) {
+      existing.addEventListener('load', () => { scriptPromises.delete(src); resolve(); }, { once: true });
+      existing.addEventListener('error', () => { scriptPromises.delete(src); reject(); }, { once: true });
+      return;
+    }
     const s = document.createElement('script');
     s.src = src;
-    s.onload = resolve;
-    s.onerror = reject;
+    s.onload = () => { s.dataset.loaded = '1'; scriptPromises.delete(src); resolve(); };
+    s.onerror = () => { scriptPromises.delete(src); reject(); };
     document.head.append(s);
   });
+  scriptPromises.set(src, p);
+  return p;
 }
 
 async function getECharts(needs3D = false) {

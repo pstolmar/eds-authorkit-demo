@@ -150,8 +150,8 @@ function buildChartControls(chartConfig, chartEl, data) {
   async function ensureChart() {
     if (!chartRendered) {
       try {
-        await renderChart(chartEl, data, currentType);
-        chartRendered = true;
+        const chart = await renderChart(chartEl, data, currentType);
+        if (chart) chartRendered = true;
       } catch {
         // CDN unavailable in offline/test environments — ignore
       }
