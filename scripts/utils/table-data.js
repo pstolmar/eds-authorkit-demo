@@ -89,17 +89,27 @@ export async function loadFromUrl(url) {
     const buffer = await resp.arrayBuffer();
     return loadXlsxBuffer(buffer);
   }
-  const jsonUrl = url.endsWith('.json') ? url : `${url}.json`;
-  const resp = await fetch(jsonUrl);
-  const json = await resp.json();
-
-  if (json[':names']) {
-    const sheets = json[':names'].map((name) => daRowsToSheet(name, json[name] || { data: [] }));
-    const primary = sheets.find((s) => s.featured) || sheets[0];
-    return { sheets, headers: primary?.headers || [], rows: primary?.rows || [] };
+  const baseUrl = url.replace(/\.json$/, '');
+  const jsonUrl = `${baseUrl}.json`;
+  const jsonResp = await fetch(jsonUrl);
+  if (jsonResp.ok) {
+    const json = await jsonResp.json();
+    if (json[':names']) {
+      const sheets = json[':names'].map((name) => daRowsToSheet(name, json[name] || { data: [] }));
+      const primary = sheets.find((s) => s.featured) || sheets[0];
+      return { sheets, headers: primary?.headers || [], rows: primary?.rows || [] };
+    }
+    const sheet = daRowsToSheet('Sheet1', json);
+    return { sheets: [sheet], headers: sheet.headers, rows: sheet.rows };
   }
-  const sheet = daRowsToSheet('Sheet1', json);
-  return { sheets: [sheet], headers: sheet.headers, rows: sheet.rows };
+  // DA HTML documents don't get .json endpoints — parse the HTML table directly
+  const htmlResp = await fetch(baseUrl);
+  if (!htmlResp.ok) throw new Error(`${htmlResp.status}`);
+  const html = await htmlResp.text();
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const table = doc.querySelector('table');
+  if (!table) throw new Error('No table in document');
+  return parseInlineTable(table);
 }
 
 export async function loadFromFile(file) {
