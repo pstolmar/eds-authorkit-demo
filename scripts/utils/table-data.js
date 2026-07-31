@@ -82,6 +82,52 @@ function daRowsToSheet(name, data) {
   return makeSheet(name, allRows);
 }
 
+function parseEdsBlockAsSheets(doc) {
+  const main = doc.querySelector('main');
+  if (!main) return null;
+  const blockDiv = main.querySelector('div > div[class]');
+  if (!blockDiv) return null;
+
+  const allRows = [...blockDiv.children].map((rowEl) => [...rowEl.children].map((cell) => cell.textContent.trim()));
+  if (!allRows.length) return null;
+
+  const hintsByPos = {};
+  let featureNames = null;
+  const dataRows = [];
+
+  for (const row of allRows) {
+    if (row[0] === '_best') {
+      row.slice(1).forEach((hint, i) => { hintsByPos[i] = hint; });
+    } else if (row[0] === '' && row.slice(1).some(Boolean)) {
+      // Row with empty first cell = feature label row (added by authors for named attributes)
+      featureNames = row.slice(1);
+    } else if (row[0]) {
+      dataRows.push(row);
+    }
+  }
+
+  if (!dataRows.length) return null;
+
+  const numCols = Math.max(...dataRows.map((r) => r.length - 1));
+  const names = featureNames || Array.from({ length: numCols }, (_, i) => `Attr ${i + 1}`);
+
+  const bestHints = {};
+  names.forEach((name, i) => { if (hintsByPos[i]) bestHints[name] = hintsByPos[i]; });
+
+  const sheets = dataRows.map((row) => {
+    const rawName = row[0];
+    const featured = rawName.startsWith('★');
+    const sheetName = rawName.replace(/^★\s*/, '').trim();
+    const sheetRows = names.map((name, i) => [name, row[i + 1] ?? '']);
+    return {
+      name: sheetName, featured, headers: ['Feature', 'Value'], rows: sheetRows, bestHints,
+    };
+  });
+
+  const primary = sheets.find((s) => s.featured) || sheets[0];
+  return { sheets, headers: ['Feature', 'Value'], rows: primary.rows };
+}
+
 export async function loadFromUrl(url) {
   const isFile = /\.(xlsx|csv)(\?|$)/i.test(url);
   if (isFile) {
@@ -108,8 +154,11 @@ export async function loadFromUrl(url) {
   const html = await htmlResp.text();
   const doc = new DOMParser().parseFromString(html, 'text/html');
   const table = doc.querySelector('table');
-  if (!table) throw new Error('No table in document');
-  return parseInlineTable(table);
+  if (table) return parseInlineTable(table);
+  // EDS block documents use div-based structure, not <table> — parse and transpose
+  const edsResult = parseEdsBlockAsSheets(doc);
+  if (edsResult) return edsResult;
+  throw new Error('No table in document');
 }
 
 export async function loadFromFile(file) {
