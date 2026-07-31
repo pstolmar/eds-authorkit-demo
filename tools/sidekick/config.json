@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    {
+      "id": "block-wizard",
+      "title": "Insert Block",
+      "url": "/tools/block-wizard/block-wizard.html",
+      "isPalette": true,
+      "paletteRect": "top: 50px; right: 20px; width: 400px; height: 540px;"
+    }
+  ]
+}

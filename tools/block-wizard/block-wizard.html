@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Block Wizard</title>
+  <link rel="stylesheet" href="./block-wizard.css">
+</head>
+<body>
+  <div id="wizard">
+    <h2 class="bw-title">Insert Block</h2>
+    <div class="bw-tabs" role="tablist">
+      <button class="bw-tab is-active" data-panel="data-table" type="button">Data Table</button>
+      <button class="bw-tab" data-panel="comparison-table" type="button">Comparison Table</button>
+      <button class="bw-tab" data-panel="structured-content" type="button">Structured Content</button>
+    </div>
+
+    <div class="bw-panel is-active" id="panel-data-table">
+      <fieldset>
+        <legend>Data Source</legend>
+        <label class="bw-radio"><input type="radio" name="dt-source" value="inline" checked> Inline (author in editor)</label>
+        <label class="bw-radio"><input type="radio" name="dt-source" value="sheet"> DA Live sheet path</label>
+        <label class="bw-radio"><input type="radio" name="dt-source" value="upload"> Upload .xlsx / .csv</label>
+      </fieldset>
+      <div class="bw-field" id="dt-path-field" hidden>
+        <label>Sheet path: <input type="text" id="dt-path" placeholder="/demo/tables/my-sheet"></label>
+      </div>
+      <div class="bw-field" id="dt-upload-field" hidden>
+        <label>File: <input type="file" id="dt-file" accept=".xlsx,.csv"></label>
+      </div>
+      <fieldset>
+        <legend>Style</legend>
+        <select id="dt-style">
+          <option value="">Default</option>
+          <option value="striped">Striped</option>
+          <option value="compact">Compact</option>
+          <option value="full-width">Full Width</option>
+        </select>
+      </fieldset>
+    </div>
+
+    <div class="bw-panel" id="panel-comparison-table">
+      <fieldset>
+        <legend>Data Source</legend>
+        <label class="bw-radio"><input type="radio" name="ct-source" value="sheet" checked> DA Live sheet path</label>
+        <label class="bw-radio"><input type="radio" name="ct-source" value="upload"> Upload .xlsx / .csv</label>
+      </fieldset>
+      <div class="bw-field">
+        <label>Sheet path: <input type="text" id="ct-path" placeholder="/demo/tables/tiers"></label>
+      </div>
+      <div class="bw-field" id="ct-upload-field" hidden>
+        <label>File: <input type="file" id="ct-file" accept=".xlsx,.csv"></label>
+      </div>
+      <fieldset>
+        <legend>Default Chart</legend>
+        <select id="ct-chart">
+          <option value="">Hidden (toggle to show)</option>
+          <option value="chart">Auto-detect</option>
+          <option value="bar-chart">Bar Chart</option>
+          <option value="line-chart">Line Chart</option>
+          <option value="scatter-chart">Scatter</option>
+          <option value="3d-bar-chart">3D Bar</option>
+          <option value="3d-scatter-chart">3D Scatter</option>
+        </select>
+      </fieldset>
+    </div>
+
+    <div class="bw-panel" id="panel-structured-content">
+      <div class="bw-field">
+        <label>Content slug: <input type="text" id="sc-slug" placeholder="light-roast-coffee"></label>
+      </div>
+      <p class="bw-hint">The slug is the filename of your structured content entry in DA.</p>
+    </div>
+
+    <div class="bw-actions">
+      <button id="bw-insert" type="button" class="bw-btn-primary">Insert Block</button>
+      <div id="bw-result" class="bw-result" hidden>
+        <p>Block markup (copy if auto-insert fails):</p>
+        <pre id="bw-markup"></pre>
+        <button id="bw-copy" type="button">Copy</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./block-wizard.js"></script>
+</body>
+</html>

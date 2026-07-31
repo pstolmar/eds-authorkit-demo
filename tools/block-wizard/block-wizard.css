@@ -1,0 +1,86 @@
+/* tools/block-wizard/block-wizard.css */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  padding: 16px;
+  background: #fff;
+  color: #1b1b1b;
+}
+
+.bw-title { font-size: 16px; margin-block-end: 12px; font-weight: 600; }
+
+.bw-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 2px solid #e0e0e0;
+  margin-block-end: 16px;
+}
+
+.bw-tab {
+  padding: 6px 12px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  color: #636363;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+
+  &.is-active { color: #843ccb; border-bottom-color: #843ccb; font-weight: 600; }
+  &:hover { color: #1b1b1b; }
+}
+
+.bw-panel { display: none; &.is-active { display: block; } }
+
+fieldset {
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-block-end: 12px;
+
+  legend { font-weight: 600; padding: 0 4px; font-size: 11px; color: #636363; text-transform: uppercase; }
+}
+
+.bw-radio { display: block; margin-block: 4px; cursor: pointer; }
+.bw-field { margin-block-end: 12px; }
+.bw-hint { color: #636363; font-size: 11px; margin-block-start: 8px; }
+
+label { display: block; margin-block-end: 4px; font-weight: 500; }
+input[type="text"], select {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #b5b5b5;
+  border-radius: 4px;
+  font: inherit;
+  margin-block-start: 4px;
+}
+
+.bw-actions { margin-block-start: 16px; }
+
+.bw-btn-primary {
+  width: 100%;
+  padding: 8px;
+  background: #843ccb;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover { background: #622c98; }
+}
+
+.bw-result {
+  margin-block-start: 12px;
+  background: #f1f1f1;
+  border-radius: 4px;
+  padding: 10px;
+
+  p { font-size: 11px; color: #636363; margin-block-end: 6px; }
+  pre { white-space: pre-wrap; word-break: break-all; font-size: 11px; margin-block-end: 8px; }
+  button { font: inherit; font-size: 11px; padding: 4px 10px; cursor: pointer; border: 1px solid #b5b5b5; border-radius: 4px; background: #fff; }
+}
