@@ -1,0 +1,48 @@
+{
+  "variantName": "product-detail",
+  "baseBlock": "columns",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "purpose": "Product detail: gallery with thumbnails, summary, benefits/directions accordion"
+  },
+  "contentPattern": {
+    "structure": "one row: [pictures | h1, copy, SKU/category, list of h2 sections]",
+    "imageCount": 2
+  },
+  "variants": [
+    "simple"
+  ],
+  "version": "1.0.0",
+  "created": "2026-09-26T02:51:36.814Z",
+  "usage": {
+    "pagesUsing": [
+      "demo/cutex/product/all-in-one-strengthener",
+      "demo/cutex/product/hydrating-cuticle-oil",
+      "demo/cutex/product/intense-recovery",
+      "demo/cutex/product/moisture-rich",
+      "demo/cutex/product/non-acetone",
+      "demo/cutex/product/nourishing",
+      "demo/cutex/product/polish-away-sponge-pads",
+      "demo/cutex/product/spot-on-jelly",
+      "demo/cutex/product/strength-shield",
+      "demo/cutex/product/swipe-go-non-acetone",
+      "demo/cutex/product/swipe-go",
+      "demo/cutex/product/twist-scrub-sponge",
+      "demo/cutex/product/ultra-caring",
+      "demo/cutex/product/ultra-powerful-tropical-breeze",
+      "demo/cutex/product/ultra-powerful",
+      "demo/sinfulcolors/product/24k-drips",
+      "demo/sinfulcolors/product/aint-having-it",
+      "demo/sinfulcolors/product/bath-goals",
+      "demo/sinfulcolors/product/beach-vibes",
+      "demo/sinfulcolors/product/berry-charm",
+      "demo/sinfulcolors/product/biker-jacket",
+      "demo/sinfulcolors/product/bite",
+      "demo/sinfulcolors/product/bitten",
+      "demo/sinfulcolors/product/black-cherry",
+      "demo/sinfulcolors/product/black-on-black"
+    ],
+    "reuseCount": 76,
+    "lastUsed": "2026-09-26T02:51:36.814Z"
+  }
+}

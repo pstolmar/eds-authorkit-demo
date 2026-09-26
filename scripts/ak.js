@@ -152,11 +152,11 @@ export function localizeUrl({ config, url }) {
 
   const { origin, pathname, search, hash } = url;
 
-  // If the link is already localized, do nothing
-  if (pathname.startsWith(`${locale.prefix}/`)) return null;
+  // If the link is already localized, do nothing (incl. the bare root, e.g. /de)
+  if (pathname === locale.prefix || pathname.startsWith(`${locale.prefix}/`)) return null;
 
   const localized = Object.keys(locales).some(
-    (key) => key !== '' && pathname.startsWith(`${key}/`),
+    (key) => key !== '' && (pathname === key || pathname.startsWith(`${key}/`)),
   );
   if (localized) return null;
 

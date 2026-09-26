@@ -44,9 +44,10 @@
 
   .marquee-line {
     display: block;
+    margin: 0;
   }
 
-  .marquee-copy :is(h1, h2, h3) {
+  .marquee-copy .marquee-headline {
     margin: 0;
     font-family: var(--font-heading);
     font-size: clamp(2.75rem, 15.6vw, 3.8125rem);
@@ -66,6 +67,10 @@
     flex-wrap: wrap;
     gap: var(--space-s);
     margin: var(--space-m) 0 0;
+
+    p {
+      margin: 0;
+    }
   }
 
   .marquee-cta {
@@ -107,7 +112,7 @@
       padding: 0 var(--grid-margin);
     }
 
-    .marquee-copy :is(h1, h2, h3) {
+    .marquee-copy .marquee-headline {
       font-size: 3.25rem;
       line-height: 1.1;
     }
@@ -123,7 +128,7 @@
       padding-inline: max(var(--grid-margin), calc((100% - var(--max-width)) / 2));
     }
 
-    .marquee-copy :is(h1, h2, h3) {
+    .marquee-copy .marquee-headline {
       font-size: 5rem;
       line-height: 1.375;
     }
@@ -149,7 +154,7 @@
     padding: var(--space-l) var(--space-m);
   }
 
-  .marquee-copy :is(h1, h2, h3) {
+  .marquee-copy .marquee-headline {
     margin-top: 100px;
     padding: var(--space-xs);
     border-radius: 16px;
@@ -170,6 +175,10 @@
   .marquee-ctas {
     width: 100%;
     margin: 0;
+
+    p {
+      width: 100%;
+    }
   }
 
   .marquee-cta {
@@ -197,7 +206,7 @@
       background: var(--brand-white);
     }
 
-    .marquee-copy :is(h1, h2, h3) {
+    .marquee-copy .marquee-headline {
       margin: 0;
       padding: 0;
       border-radius: 0;
@@ -206,6 +215,10 @@
 
     .marquee-ctas {
       justify-content: flex-end;
+
+      p {
+        width: auto;
+      }
     }
 
     .marquee-cta {

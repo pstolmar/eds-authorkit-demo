@@ -1,0 +1,22 @@
+{
+  "variantName": "brand-footer",
+  "baseBlock": "footer",
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "airy",
+    "purpose": "Brand site footer: wordmark or logo, copyright, social icons, legal links incl. PDFs"
+  },
+  "contentPattern": {
+    "structure": "fragment: brand section, optional social image links, legal list"
+  },
+  "version": "1.0.0",
+  "created": "2026-09-26T02:51:36.814Z",
+  "usage": {
+    "pagesUsing": [
+      "demo/cutex/fragments/nav/footer",
+      "demo/sinfulcolors/fragments/nav/footer"
+    ],
+    "reuseCount": 2,
+    "lastUsed": "2026-09-26T02:51:36.814Z"
+  }
+}

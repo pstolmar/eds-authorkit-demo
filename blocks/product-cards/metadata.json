@@ -1,0 +1,38 @@
+{
+  "variantName": "product-cards",
+  "baseBlock": "cards",
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "balanced",
+    "purpose": "Product / category tile grid with hover variants and storefront slot",
+    "imagePattern": "product image + optional hover (shade splat) image"
+  },
+  "contentPattern": {
+    "structure": "repeating rows: [picture(s) | title link]"
+  },
+  "variants": [
+    "glow",
+    "splat",
+    "category",
+    "featured"
+  ],
+  "version": "1.0.0",
+  "created": "2026-09-26T02:51:36.814Z",
+  "usage": {
+    "pagesUsing": [
+      "demo/cutex/store/products/acetone-removers",
+      "demo/cutex/store/products/nail-treatments",
+      "demo/cutex/store/products/non-acetone-removers",
+      "demo/cutex/store/products",
+      "demo/sinfulcolors/index",
+      "demo/sinfulcolors/nail-polish/bold-color",
+      "demo/sinfulcolors/nail-polish/essenchills",
+      "demo/sinfulcolors/nail-polish/nail-polish",
+      "demo/sinfulcolors/nail-polish/power-paint",
+      "demo/sinfulcolors/nail-polish/quick-bliss",
+      "demo/sinfulcolors/nail-polish"
+    ],
+    "reuseCount": 11,
+    "lastUsed": "2026-09-26T02:51:36.814Z"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "variantName": "contact-us",
+  "baseBlock": "form",
+  "visualCharacteristics": {
+    "purpose": "Consumer affairs contact form; authored copy is the confirmation message"
+  },
+  "contentPattern": {
+    "structure": "single cell: confirmation paragraphs, optional image"
+  },
+  "version": "1.0.0",
+  "created": "2026-09-26T02:51:36.814Z",
+  "usage": {
+    "pagesUsing": [
+      "demo/cutex/contact-us",
+      "demo/sinfulcolors/contact-us"
+    ],
+    "reuseCount": 2,
+    "lastUsed": "2026-09-26T02:51:36.814Z"
+  }
+}

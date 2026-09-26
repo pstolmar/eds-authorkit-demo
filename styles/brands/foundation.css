@@ -237,6 +237,16 @@ body.brand-site {
     height: auto;
   }
 
+  /* Picture wrappers kept for the DA canvas are layout-neutral */
+  main .pic-wrap {
+    display: contents;
+  }
+
+  /* Author Kit sizes images to 100% width; brand copy images keep their natural size */
+  main .default-content img {
+    width: auto;
+  }
+
   /* Author Kit buttons, re-skinned to the brand */
   main a.btn {
     display: inline-flex;

@@ -1,0 +1,308 @@
+{
+  "templates": [
+    {
+      "name": "home",
+      "description": "Brand homepage: full-bleed marquee and/or featured product cards (shared by all brands)",
+      "urlPattern": "/",
+      "representativeUrl": "https://www.cutex.com/",
+      "urls": [
+        "https://www.sinfulcolors.com/",
+        "https://www.cutex.com/"
+      ],
+      "blocks": [
+        {
+          "name": "marquee",
+          "instances": [
+            "main div.hero"
+          ]
+        },
+        {
+          "name": "product-cards",
+          "instances": [
+            "main div.category-cards"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "product-listing",
+      "description": "Category / product listing: breadcrumb, title and product cards grid",
+      "urlPattern": "/store/products*, /nail-polish*",
+      "representativeUrl": "https://www.cutex.com/store/products/acetone-removers",
+      "urls": [
+        "https://www.cutex.com/store/products/acetone-removers",
+        "https://www.cutex.com/store/products",
+        "https://www.cutex.com/store/products/non-acetone-removers",
+        "https://www.cutex.com/store/products/nail-treatments",
+        "https://www.sinfulcolors.com/nail-polish/quick-bliss",
+        "https://www.sinfulcolors.com/nail-polish/power-paint",
+        "https://www.sinfulcolors.com/nail-polish",
+        "https://www.sinfulcolors.com/nail-polish/essenchills",
+        "https://www.sinfulcolors.com/nail-polish/bold-color",
+        "https://www.sinfulcolors.com/nail-polish/nail-polish"
+      ],
+      "blocks": [
+        {
+          "name": "breadcrumb",
+          "instances": [
+            "main div.breadcrumb"
+          ]
+        },
+        {
+          "name": "product-cards",
+          "instances": [
+            "main div.product-list"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "product-detail",
+      "description": "Product detail: breadcrumb and product-detail gallery + summary",
+      "urlPattern": "/product/*",
+      "representativeUrl": "https://www.cutex.com/product/all-in-one-strengthener",
+      "urls": [
+        "https://www.cutex.com/product/all-in-one-strengthener",
+        "https://www.cutex.com/product/hydrating-cuticle-oil",
+        "https://www.cutex.com/product/moisture-rich",
+        "https://www.cutex.com/product/spot-on-jelly",
+        "https://www.cutex.com/product/swipe-go-non-acetone",
+        "https://www.cutex.com/product/strength-shield",
+        "https://www.cutex.com/product/non-acetone",
+        "https://www.cutex.com/product/nourishing",
+        "https://www.cutex.com/product/twist-scrub-sponge",
+        "https://www.cutex.com/product/intense-recovery",
+        "https://www.cutex.com/product/ultra-powerful",
+        "https://www.cutex.com/product/ultra-powerful-tropical-breeze",
+        "https://www.cutex.com/product/swipe-go",
+        "https://www.cutex.com/product/polish-away-sponge-pads",
+        "https://www.cutex.com/product/ultra-caring",
+        "https://www.sinfulcolors.com/product/berry-charm",
+        "https://www.sinfulcolors.com/product/bite",
+        "https://www.sinfulcolors.com/product/beach-vibes",
+        "https://www.sinfulcolors.com/product/aint-having-it",
+        "https://www.sinfulcolors.com/product/24k-drips",
+        "https://www.sinfulcolors.com/product/biker-jacket",
+        "https://www.sinfulcolors.com/product/bath-goals",
+        "https://www.sinfulcolors.com/product/black-cherry",
+        "https://www.sinfulcolors.com/product/cari-bae-n",
+        "https://www.sinfulcolors.com/product/chamomile-calm",
+        "https://www.sinfulcolors.com/product/bitten",
+        "https://www.sinfulcolors.com/product/coffee-drip",
+        "https://www.sinfulcolors.com/product/black-on-black",
+        "https://www.sinfulcolors.com/product/climaxxx",
+        "https://www.sinfulcolors.com/product/diamonds-on-my-neck",
+        "https://www.sinfulcolors.com/product/cherry-chaser",
+        "https://www.sinfulcolors.com/product/endless-blue",
+        "https://www.sinfulcolors.com/product/gogo-girl",
+        "https://www.sinfulcolors.com/product/flushed",
+        "https://www.sinfulcolors.com/product/eucalyptahhh",
+        "https://www.sinfulcolors.com/product/hazard",
+        "https://www.sinfulcolors.com/product/let-me-go",
+        "https://www.sinfulcolors.com/product/juicy",
+        "https://www.sinfulcolors.com/product/galaxy-gurl",
+        "https://www.sinfulcolors.com/product/glass-pink",
+        "https://www.sinfulcolors.com/product/lets-talk",
+        "https://www.sinfulcolors.com/product/lie-lac",
+        "https://www.sinfulcolors.com/product/ice-ice-cherry",
+        "https://www.sinfulcolors.com/product/hit-the-spot",
+        "https://www.sinfulcolors.com/product/low-key-lavender",
+        "https://www.sinfulcolors.com/product/play-hard",
+        "https://www.sinfulcolors.com/product/pink-smart",
+        "https://www.sinfulcolors.com/product/plum-n-berry",
+        "https://www.sinfulcolors.com/product/sail-la-vie",
+        "https://www.sinfulcolors.com/product/rise-shine",
+        "https://www.sinfulcolors.com/product/pinky-glitter",
+        "https://www.sinfulcolors.com/product/power-moves",
+        "https://www.sinfulcolors.com/product/shine-honey",
+        "https://www.sinfulcolors.com/product/queen-of-beauty",
+        "https://www.sinfulcolors.com/product/pop-it",
+        "https://www.sinfulcolors.com/product/prosecco-problems",
+        "https://www.sinfulcolors.com/product/smoky-palo-santo",
+        "https://www.sinfulcolors.com/product/salt-bath-babe",
+        "https://www.sinfulcolors.com/product/clear-coat",
+        "https://www.sinfulcolors.com/product/so-matcha-better",
+        "https://www.sinfulcolors.com/product/starfish",
+        "https://www.sinfulcolors.com/product/strengthening-top-coat",
+        "https://www.sinfulcolors.com/product/never-not-working",
+        "https://www.sinfulcolors.com/product/snow-me-white",
+        "https://www.sinfulcolors.com/product/sugar-sugar",
+        "https://www.sinfulcolors.com/product/tempest",
+        "https://www.sinfulcolors.com/product/sweet-spicey",
+        "https://www.sinfulcolors.com/product/thrilled",
+        "https://www.sinfulcolors.com/product/tokyo-pearl",
+        "https://www.sinfulcolors.com/product/sweet-cheeks",
+        "https://www.sinfulcolors.com/product/taupe-is-dope",
+        "https://www.sinfulcolors.com/product/vacation-time",
+        "https://www.sinfulcolors.com/product/unicorns-r-real",
+        "https://www.sinfulcolors.com/product/yolo-yellow",
+        "https://www.sinfulcolors.com/product/thimbleberry",
+        "https://www.sinfulcolors.com/product/violet-riot"
+      ],
+      "blocks": [
+        {
+          "name": "breadcrumb",
+          "instances": [
+            "main div.breadcrumb"
+          ]
+        },
+        {
+          "name": "product-detail",
+          "instances": [
+            "main div.product-detail"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "content-page",
+      "description": "About, contact, legal and campaign pages: breadcrumb + default content with optional blocks",
+      "urlPattern": "/*",
+      "representativeUrl": "https://www.cutex.com/privacy-policy",
+      "urls": [
+        "https://www.cutex.com/privacy-policy",
+        "https://www.cutex.com/contact-us",
+        "https://www.cutex.com/about-us",
+        "https://www.cutex.com/dsar",
+        "https://www.cutex.com/terms-of-use",
+        "https://www.sinfulcolors.com/privacy-policy",
+        "https://www.sinfulcolors.com/contact-us",
+        "https://www.sinfulcolors.com/about-us",
+        "https://www.sinfulcolors.com/dsar",
+        "https://www.sinfulcolors.com/sinful-colors-2",
+        "https://www.sinfulcolors.com/saweetiehotline",
+        "https://www.sinfulcolors.com/saweetie-vacay-vibes-giveaway-terms",
+        "https://www.sinfulcolors.com/terms-of-use"
+      ],
+      "blocks": [
+        {
+          "name": "breadcrumb",
+          "instances": [
+            "main div.breadcrumb"
+          ]
+        },
+        {
+          "name": "contact-us",
+          "instances": [
+            "main div.contact-us"
+          ]
+        },
+        {
+          "name": "embed",
+          "instances": [
+            "main div.iframe"
+          ]
+        },
+        {
+          "name": "table",
+          "instances": [
+            "main div.table"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fragments",
+      "description": "Brand nav + footer fragments \u2192 {site}/fragments/nav/{header,footer}",
+      "urlPattern": "/nav, /footer",
+      "urls": [
+        "https://www.cutex.com/nav",
+        "https://www.cutex.com/footer",
+        "https://www.sinfulcolors.com/nav",
+        "https://www.sinfulcolors.com/footer"
+      ],
+      "blocks": []
+    },
+    {
+      "name": "product-data",
+      "description": "Structured content (DA form, schema: product) per product \u2192 {site}/data/products/{slug}",
+      "urlPattern": "/product/*",
+      "urls": [
+        "https://www.cutex.com/product/all-in-one-strengthener",
+        "https://www.cutex.com/product/hydrating-cuticle-oil",
+        "https://www.cutex.com/product/moisture-rich",
+        "https://www.cutex.com/product/spot-on-jelly",
+        "https://www.cutex.com/product/swipe-go-non-acetone",
+        "https://www.cutex.com/product/strength-shield",
+        "https://www.cutex.com/product/non-acetone",
+        "https://www.cutex.com/product/nourishing",
+        "https://www.cutex.com/product/twist-scrub-sponge",
+        "https://www.cutex.com/product/intense-recovery",
+        "https://www.cutex.com/product/ultra-powerful",
+        "https://www.cutex.com/product/ultra-powerful-tropical-breeze",
+        "https://www.cutex.com/product/swipe-go",
+        "https://www.cutex.com/product/polish-away-sponge-pads",
+        "https://www.cutex.com/product/ultra-caring",
+        "https://www.sinfulcolors.com/product/berry-charm",
+        "https://www.sinfulcolors.com/product/bite",
+        "https://www.sinfulcolors.com/product/beach-vibes",
+        "https://www.sinfulcolors.com/product/aint-having-it",
+        "https://www.sinfulcolors.com/product/24k-drips",
+        "https://www.sinfulcolors.com/product/biker-jacket",
+        "https://www.sinfulcolors.com/product/bath-goals",
+        "https://www.sinfulcolors.com/product/black-cherry",
+        "https://www.sinfulcolors.com/product/cari-bae-n",
+        "https://www.sinfulcolors.com/product/chamomile-calm",
+        "https://www.sinfulcolors.com/product/bitten",
+        "https://www.sinfulcolors.com/product/coffee-drip",
+        "https://www.sinfulcolors.com/product/black-on-black",
+        "https://www.sinfulcolors.com/product/climaxxx",
+        "https://www.sinfulcolors.com/product/diamonds-on-my-neck",
+        "https://www.sinfulcolors.com/product/cherry-chaser",
+        "https://www.sinfulcolors.com/product/endless-blue",
+        "https://www.sinfulcolors.com/product/gogo-girl",
+        "https://www.sinfulcolors.com/product/flushed",
+        "https://www.sinfulcolors.com/product/eucalyptahhh",
+        "https://www.sinfulcolors.com/product/hazard",
+        "https://www.sinfulcolors.com/product/let-me-go",
+        "https://www.sinfulcolors.com/product/juicy",
+        "https://www.sinfulcolors.com/product/galaxy-gurl",
+        "https://www.sinfulcolors.com/product/glass-pink",
+        "https://www.sinfulcolors.com/product/lets-talk",
+        "https://www.sinfulcolors.com/product/lie-lac",
+        "https://www.sinfulcolors.com/product/ice-ice-cherry",
+        "https://www.sinfulcolors.com/product/hit-the-spot",
+        "https://www.sinfulcolors.com/product/low-key-lavender",
+        "https://www.sinfulcolors.com/product/play-hard",
+        "https://www.sinfulcolors.com/product/pink-smart",
+        "https://www.sinfulcolors.com/product/plum-n-berry",
+        "https://www.sinfulcolors.com/product/sail-la-vie",
+        "https://www.sinfulcolors.com/product/rise-shine",
+        "https://www.sinfulcolors.com/product/pinky-glitter",
+        "https://www.sinfulcolors.com/product/power-moves",
+        "https://www.sinfulcolors.com/product/shine-honey",
+        "https://www.sinfulcolors.com/product/queen-of-beauty",
+        "https://www.sinfulcolors.com/product/pop-it",
+        "https://www.sinfulcolors.com/product/prosecco-problems",
+        "https://www.sinfulcolors.com/product/smoky-palo-santo",
+        "https://www.sinfulcolors.com/product/salt-bath-babe",
+        "https://www.sinfulcolors.com/product/clear-coat",
+        "https://www.sinfulcolors.com/product/so-matcha-better",
+        "https://www.sinfulcolors.com/product/starfish",
+        "https://www.sinfulcolors.com/product/strengthening-top-coat",
+        "https://www.sinfulcolors.com/product/never-not-working",
+        "https://www.sinfulcolors.com/product/snow-me-white",
+        "https://www.sinfulcolors.com/product/sugar-sugar",
+        "https://www.sinfulcolors.com/product/tempest",
+        "https://www.sinfulcolors.com/product/sweet-spicey",
+        "https://www.sinfulcolors.com/product/thrilled",
+        "https://www.sinfulcolors.com/product/tokyo-pearl",
+        "https://www.sinfulcolors.com/product/sweet-cheeks",
+        "https://www.sinfulcolors.com/product/taupe-is-dope",
+        "https://www.sinfulcolors.com/product/vacation-time",
+        "https://www.sinfulcolors.com/product/unicorns-r-real",
+        "https://www.sinfulcolors.com/product/yolo-yellow",
+        "https://www.sinfulcolors.com/product/thimbleberry",
+        "https://www.sinfulcolors.com/product/violet-riot"
+      ],
+      "blocks": [
+        {
+          "name": "product-data",
+          "instances": [
+            "main div.product-detail"
+          ]
+        }
+      ]
+    }
+  ]
+}

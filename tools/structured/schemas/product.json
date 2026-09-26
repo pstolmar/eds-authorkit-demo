@@ -1,0 +1,32 @@
+{
+  "type": "object",
+  "title": "Brand Product",
+  "description": "Commerce data for a brand product (Cutex, Sinful Colors). Marketing copy lives on the product page document; this entry drives price, inventory and cart data.",
+  "required": ["name", "slug", "sku", "price", "inventory", "status"],
+  "properties": {
+    "name": { "type": "string", "title": "Product Name", "minLength": 2, "maxLength": 80 },
+    "slug": { "type": "string", "title": "Slug", "pattern": "^[a-z0-9-]+$" },
+    "brand": { "type": "string", "title": "Brand", "enum": ["Cutex", "Sinful Colors"] },
+    "sku": { "type": "string", "title": "SKU" },
+    "category": { "type": "string", "title": "Category" },
+    "categoryUrl": { "type": "string", "title": "Category Page" },
+    "url": { "type": "string", "title": "Product Page" },
+    "description": { "type": "string", "title": "Short Description", "maxLength": 400 },
+    "image": { "type": "string", "title": "Primary Image" },
+    "hoverImage": { "type": "string", "title": "Hover / Swatch Image" },
+    "price": { "type": "number", "title": "Price", "minimum": 0 },
+    "compareAtPrice": { "type": "number", "title": "Compare-at Price", "minimum": 0 },
+    "currency": { "type": "string", "title": "Currency", "enum": ["USD", "CAD"], "default": "USD" },
+    "inventory": { "type": "integer", "title": "Units in Stock", "minimum": 0 },
+    "lowStockThreshold": { "type": "integer", "title": "Low Stock Threshold", "minimum": 0, "default": 5 },
+    "sizes": {
+      "type": "array",
+      "title": "Sizes",
+      "items": { "type": "string", "title": "Size" }
+    },
+    "badge": { "type": "string", "title": "Badge", "enum": ["None", "New", "Best Seller", "Limited Edition"], "default": "None" },
+    "rating": { "type": "number", "title": "Average Rating", "minimum": 0, "maximum": 5 },
+    "reviewCount": { "type": "integer", "title": "Review Count", "minimum": 0 },
+    "status": { "type": "string", "title": "Status", "enum": ["Active", "Draft", "Discontinued"], "default": "Active" }
+  }
+}

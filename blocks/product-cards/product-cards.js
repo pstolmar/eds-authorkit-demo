@@ -12,6 +12,8 @@
  *   featured  – large homepage tiles with the title under a compact image
  */
 
+import { isAuthoring, pictureHolder } from '../../scripts/utils/authoring.js';
+
 const ACCENTS = 4;
 
 function slugFromHref(href) {
@@ -42,6 +44,17 @@ function buildSplat() {
   return svg;
 }
 
+/** Keep "&" / "+" with the preceding word; "+" renders as a small glyph. */
+function decorateTitle(link, title) {
+  const [before, after] = title.replace(/\s+([&+])\s+/, '\u00a0$1 ').split(/(?<=\u00a0)\+/);
+  link.textContent = before;
+  if (after === undefined) return;
+  const plus = document.createElement('span');
+  plus.className = 'product-card-plus';
+  plus.textContent = '+';
+  link.append(plus, after);
+}
+
 function buildCard(row, idx, variants) {
   const textCell = row.children[1];
   const pictures = [...row.querySelectorAll('picture')];
@@ -67,29 +80,25 @@ function buildCard(row, idx, variants) {
   const [primary, alt] = pictures;
   if (primary) {
     primary.classList.add('product-card-img');
-    media.append(primary);
+    media.append(pictureHolder(primary));
   }
   if (alt) {
     alt.classList.add('product-card-alt');
     li.classList.add('has-alt');
-    media.append(alt);
+    media.append(pictureHolder(alt));
   }
   if (variants.has('splat') && !alt) media.prepend(buildSplat());
 
-  const heading = document.createElement('h2');
-  heading.className = 'product-card-title';
-  const titleLink = document.createElement('a');
-  titleLink.href = href;
-  // Keep "&" / "+" with the preceding word; "+" renders as a small glyph
-  const [before, after] = title.replace(/\s+([&+])\s+/, '\u00a0$1 ').split(/(?<=\u00a0)\+/);
-  titleLink.textContent = before;
-  if (after !== undefined) {
-    const plus = document.createElement('span');
-    plus.className = 'product-card-plus';
-    plus.textContent = '+';
-    titleLink.append(plus, after);
+  // Reuse the authored title element so it stays editable in the DA canvas
+  const authored = link?.closest('p, h2, h3, h4');
+  const heading = authored && row.contains(authored) ? authored : document.createElement('p');
+  if (!heading.contains(link) && link) heading.append(link);
+  heading.classList.add('product-card-title');
+  if (heading.tagName === 'P') {
+    heading.setAttribute('role', 'heading');
+    heading.setAttribute('aria-level', '2');
   }
-  heading.append(titleLink);
+  if (link && !isAuthoring()) decorateTitle(link, title);
 
   li.append(media, heading);
   detail.forEach((p) => {

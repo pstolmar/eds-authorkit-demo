@@ -1,0 +1,44 @@
+{
+  "variantName": "breadcrumb",
+  "baseBlock": "breadcrumb",
+  "visualCharacteristics": {
+    "density": "compact",
+    "purpose": "Page trail; last item is the current page"
+  },
+  "contentPattern": {
+    "structure": "single cell: list of links"
+  },
+  "version": "1.0.0",
+  "created": "2026-09-26T02:51:36.814Z",
+  "usage": {
+    "pagesUsing": [
+      "demo/cutex/about-us",
+      "demo/cutex/contact-us",
+      "demo/cutex/dsar",
+      "demo/cutex/privacy-policy",
+      "demo/cutex/product/all-in-one-strengthener",
+      "demo/cutex/product/hydrating-cuticle-oil",
+      "demo/cutex/product/intense-recovery",
+      "demo/cutex/product/moisture-rich",
+      "demo/cutex/product/non-acetone",
+      "demo/cutex/product/nourishing",
+      "demo/cutex/product/polish-away-sponge-pads",
+      "demo/cutex/product/spot-on-jelly",
+      "demo/cutex/product/strength-shield",
+      "demo/cutex/product/swipe-go-non-acetone",
+      "demo/cutex/product/swipe-go",
+      "demo/cutex/product/twist-scrub-sponge",
+      "demo/cutex/product/ultra-caring",
+      "demo/cutex/product/ultra-powerful-tropical-breeze",
+      "demo/cutex/product/ultra-powerful",
+      "demo/cutex/store/products/acetone-removers",
+      "demo/cutex/store/products/nail-treatments",
+      "demo/cutex/store/products/non-acetone-removers",
+      "demo/cutex/store/products",
+      "demo/cutex/terms-of-use",
+      "demo/sinfulcolors/about-us"
+    ],
+    "reuseCount": 99,
+    "lastUsed": "2026-09-26T02:51:36.814Z"
+  }
+}

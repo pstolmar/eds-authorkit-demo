@@ -1,0 +1,109 @@
+/* Content page template – about, contact, legal and campaign pages (all brands) */
+.content-page-template main > .section:has(> .default-content) {
+  padding-block: var(--space-m);
+
+  > .default-content {
+    h1,
+    h2 {
+      margin: 0 0 var(--space-s);
+      font-size: 2.75rem;
+      font-weight: 400;
+      line-height: var(--line-height-snug);
+      color: var(--brand-black);
+      text-transform: none;
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 0 0 var(--space-s);
+      font-size: var(--font-size-body);
+      font-weight: 700;
+      line-height: var(--line-height-normal);
+      text-transform: none;
+    }
+
+    p,
+    ul,
+    ol {
+      margin: 0 0 var(--space-l);
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-normal);
+      color: var(--brand-text);
+    }
+
+    ul {
+      padding-left: var(--space-m);
+      list-style: disc;
+    }
+
+    ol {
+      padding-left: var(--space-m);
+      list-style: decimal;
+    }
+
+    li {
+      margin: 0 0 var(--space-xs);
+    }
+
+    li ul,
+    li ol {
+      margin: var(--space-xs) 0 0;
+    }
+
+    a {
+      color: var(--brand-link);
+    }
+  }
+
+  /* table of contents style (legal pages) */
+  &.toc > .default-content ol a {
+    color: var(--brand-text);
+  }
+}
+
+.content-page-template main > .section.align-image-center > .default-content {
+  text-align: left;
+
+  > p:has(picture) {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* Author Kit table block inside legal pages */
+.content-page-template main .table {
+  margin-block: var(--space-m);
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-s);
+  }
+
+  th,
+  td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background: var(--brand-gray-lighter);
+    font-weight: 700;
+    color: var(--brand-black);
+  }
+}
+
+@media (width >= 900px) {
+  .content-page-template main > .section:has(> .default-content) {
+    padding-block: var(--space-3xl);
+  }
+
+  .content-page-template main > .section:has(> .block-content > .breadcrumb) {
+    padding-block: 0;
+  }
+}

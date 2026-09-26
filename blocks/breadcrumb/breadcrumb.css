@@ -32,6 +32,12 @@
     margin: 0;
     color: var(--brand-near-black);
 
+    /* Editor-rendered list items may wrap text in paragraphs */
+    p {
+      display: inline;
+      margin: 0;
+    }
+
     + .breadcrumb-item::before {
       content: "/";
       color: var(--brand-gray);

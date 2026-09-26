@@ -2,16 +2,31 @@
  * Product Detail – gallery + summary shared by all brand sites.
  * Authoring: one row [ pictures | h1, copy, SKU/category, list of h2 sections ].
  * Variant `simple` keeps the summary list as plain bullets (no accordion).
+ * Authored elements are moved, never recreated, so the DA canvas can edit them.
  */
+import { isAuthoring, pictureHolder } from '../../scripts/utils/authoring.js';
+
+// A display copy must not carry the editor's position markers
+function displayCopy(pic) {
+  const copy = pic.cloneNode(true);
+  [copy, ...copy.querySelectorAll('*')].forEach((node) => {
+    node.removeAttribute('data-prose-index');
+    node.removeAttribute('data-initial-length');
+  });
+  return copy;
+}
 
 function buildGallery(pictures) {
   const gallery = document.createElement('div');
   gallery.className = 'pdp-gallery';
   const viewport = document.createElement('div');
   viewport.className = 'pdp-viewport';
-  if (pictures[0]) viewport.append(pictures[0].cloneNode(true));
   gallery.append(viewport);
-  if (pictures.length < 2) return gallery;
+  if (pictures.length < 2) {
+    if (pictures[0]) viewport.append(pictureHolder(pictures[0]));
+    return gallery;
+  }
+  viewport.append(displayCopy(pictures[0]));
 
   const thumbs = document.createElement('ol');
   thumbs.className = 'pdp-thumbs';
@@ -21,9 +36,9 @@ function buildGallery(pictures) {
     btn.type = 'button';
     btn.className = `pdp-thumb${idx === 0 ? ' is-active' : ''}`;
     btn.setAttribute('aria-label', `Show image ${idx + 1}`);
-    btn.append(pic);
+    btn.append(pictureHolder(pic));
     btn.addEventListener('click', () => {
-      viewport.replaceChildren(pic.cloneNode(true));
+      viewport.replaceChildren(displayCopy(pic));
       thumbs.querySelectorAll('.pdp-thumb').forEach((t) => t.classList.remove('is-active'));
       btn.classList.add('is-active');
     });
@@ -37,34 +52,38 @@ function buildGallery(pictures) {
 function buildAccordion(list) {
   const items = [...list.children].filter((li) => li.querySelector(':scope > h2, :scope > h3'));
   if (!items.length) return;
+  const authoring = isAuthoring();
   list.className = 'pdp-accordion';
   items.forEach((li, idx) => {
+    // Accessible accordion: the authored heading keeps a toggle button inside
     const heading = li.querySelector(':scope > h2, :scope > h3');
     const id = `pdp-panel-${idx}`;
+    const open = authoring || idx === 0;
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'pdp-accordion-header';
-    btn.setAttribute('aria-expanded', idx === 0);
+    btn.setAttribute('aria-expanded', open);
     btn.setAttribute('aria-controls', id);
-    btn.textContent = heading.textContent.trim();
-    heading.remove();
+    btn.append(...heading.childNodes);
+    heading.className = 'pdp-accordion-heading';
+    heading.append(btn);
 
     const panel = document.createElement('div');
     panel.className = 'pdp-accordion-panel';
     panel.id = id;
-    panel.hidden = idx !== 0;
-    panel.append(...li.childNodes);
+    panel.hidden = !open;
+    panel.append(...[...li.childNodes].filter((node) => node !== heading));
     li.className = 'pdp-accordion-item';
-    li.replaceChildren(btn, panel);
+    li.replaceChildren(heading, panel);
 
     btn.addEventListener('click', () => {
-      const open = btn.getAttribute('aria-expanded') !== 'true';
-      list.querySelectorAll('.pdp-accordion-header').forEach((h) => {
-        h.setAttribute('aria-expanded', 'false');
-        h.nextElementSibling.hidden = true;
+      const expand = btn.getAttribute('aria-expanded') !== 'true';
+      list.querySelectorAll('.pdp-accordion-item').forEach((item) => {
+        item.querySelector('.pdp-accordion-header').setAttribute('aria-expanded', 'false');
+        item.querySelector('.pdp-accordion-panel').hidden = true;
       });
-      btn.setAttribute('aria-expanded', open);
-      panel.hidden = !open;
+      btn.setAttribute('aria-expanded', expand);
+      panel.hidden = !expand;
     });
   });
 }

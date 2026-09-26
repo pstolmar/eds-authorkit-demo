@@ -4,6 +4,8 @@
  * The source sites embed a third-party form; this demo renders the same fields
  * natively and does not transmit submissions.
  */
+import { isAuthoring } from '../../scripts/utils/authoring.js';
+
 const STATES = ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FL', 'GA', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VA', 'WA', 'WV', 'WI', 'WY'];
 const COUNTRIES = ['United States', 'Canada', 'Mexico', 'United Kingdom', 'Other'];
 
@@ -79,7 +81,8 @@ export default function init(el) {
   thanks.className = 'contact-thanks';
   thanks.setAttribute('role', 'status');
   thanks.tabIndex = -1;
-  thanks.hidden = true;
+  // Keep the confirmation copy visible (and editable) in the DA canvas
+  thanks.hidden = !isAuthoring();
   const media = document.createElement('div');
   media.className = 'contact-media';
   el.querySelectorAll(':scope > div > div').forEach((cell) => {
@@ -95,5 +98,6 @@ export default function init(el) {
   }
   if (!thanks.children.length) thanks.innerHTML = '<p>Thank you for contacting us! Our team will be in touch with you.</p>';
   body.append(buildForm(thanks));
+  if (isAuthoring()) body.prepend(thanks);
   el.replaceChildren(body);
 }

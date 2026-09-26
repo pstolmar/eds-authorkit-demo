@@ -1,0 +1,27 @@
+{
+  "variantName": "marquee",
+  "baseBlock": "hero",
+  "visualCharacteristics": {
+    "colorScheme": "dark (default) | light (overlay-right)",
+    "purpose": "Full-bleed brand hero: stacked headline with accent words, or copy card over image",
+    "imagePattern": "desktop + optional mobile image"
+  },
+  "contentPattern": {
+    "structure": "one row: [headline lines + CTA | desktop picture, mobile picture]",
+    "buttonCount": 1,
+    "imageCount": 2
+  },
+  "variants": [
+    "overlay-right"
+  ],
+  "version": "1.0.0",
+  "created": "2026-09-26T02:51:36.814Z",
+  "usage": {
+    "pagesUsing": [
+      "demo/cutex/index",
+      "demo/sinfulcolors/index"
+    ],
+    "reuseCount": 2,
+    "lastUsed": "2026-09-26T02:51:36.814Z"
+  }
+}

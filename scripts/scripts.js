@@ -1,4 +1,5 @@
 import { loadArea, setConfig, getMetadata, loadStyle } from './ak.js';
+import { applyInlineMetadata, isFramed } from './utils/authoring.js';
 
 const hostnames = ['authorkit.dev'];
 
@@ -74,6 +75,7 @@ export async function loadPage() {
   setConfig({
     hostnames, locales, linkBlocks, components, decorateArea, daSite, mount,
   });
+  applyInlineMetadata();
   await loadTheme();
   await loadArea();
 }
@@ -88,7 +90,8 @@ await loadPage();
 }());
 
 (function brandTools() {
-  if (!getMetadata('theme')) return;
+  // Not inside the DA canvas / editor frames: no consent banner or demo panel
+  if (!getMetadata('theme') || isFramed()) return;
   import('./utils/consent.js').then((mod) => mod.default());
   import('../tools/demo/demo.js').then((mod) => mod.default());
 }());
