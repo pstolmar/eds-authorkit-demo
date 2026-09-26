@@ -1,0 +1,128 @@
+/* Brand footer – shared by all brand sites; content decides wordmark vs logo/social */
+footer.brand-footer {
+  padding: var(--space-xl) 0;
+  background: var(--footer-bg);
+  color: var(--footer-fg);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-normal);
+  text-align: center;
+
+  a {
+    color: var(--footer-fg);
+    text-decoration: none;
+    transition: opacity var(--transition);
+
+    &:hover {
+      color: var(--footer-fg);
+      opacity: 0.7;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-m);
+    width: var(--container);
+    max-width: var(--max-width);
+    margin-inline: auto;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .footer-logo {
+    display: inline-flex;
+    margin-block-end: var(--space-xs);
+
+    picture {
+      display: contents;
+    }
+
+    img {
+      display: block;
+      width: auto;
+      height: var(--nav-logo-height);
+      max-width: var(--nav-logo-width);
+      object-fit: contain;
+    }
+  }
+
+  .footer-wordmark {
+    font-weight: var(--footer-title-weight);
+    text-transform: uppercase;
+
+    strong {
+      font-weight: inherit;
+    }
+  }
+
+  .footer-copyright {
+    font-weight: 300;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: var(--space-s);
+    padding-block: var(--space-xs);
+
+    picture {
+      display: contents;
+    }
+
+    img {
+      display: block;
+      width: 32px;
+      height: 32px;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  .footer-legal ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: var(--space-2xs) 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .footer-legal li {
+    flex: 0 0 50%;
+    margin: 0;
+  }
+
+  .footer-legal a {
+    display: block;
+    padding: 6px var(--space-xs);
+    font-size: var(--font-size-s);
+    font-weight: var(--footer-legal-weight);
+    text-transform: var(--footer-legal-transform);
+  }
+}
+
+@media (width >= 900px) {
+  footer.brand-footer {
+    padding: var(--space-3xl) 0;
+
+    .footer-legal li {
+      flex: 0 0 auto;
+    }
+
+    .footer-legal a {
+      padding: 6px 18px;
+      font-size: var(--font-size-body);
+      white-space: nowrap;
+    }
+  }
+}

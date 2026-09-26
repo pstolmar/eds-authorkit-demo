@@ -14,7 +14,8 @@ const LOG = async (ex, el) => (await import('./utils/error.js')).default(ex, el)
 
 export function getMetadata(name) {
   const attr = name && name.includes(':') ? 'property' : 'name';
-  const meta = document.head.querySelector(`meta[${attr}="${name}"]`);
+  // Case-insensitive: authored keys (e.g. "Template") are lowercased on publish
+  const meta = document.head.querySelector(`meta[${attr}="${name}" i]`);
   return meta && meta.content;
 }
 
@@ -92,13 +93,15 @@ function decoratePictures(el) {
   const pics = el.querySelectorAll('picture');
   for (const pic of pics) {
     const source = pic.querySelector('source');
-    const clone = source.cloneNode();
-    const [pathname, params] = clone.getAttribute('srcset').split('?');
-    const search = new URLSearchParams(params);
-    search.set('width', 3000);
-    clone.setAttribute('srcset', `${pathname}?${search.toString()}`);
-    clone.setAttribute('media', '(min-width: 1440px)');
-    pic.prepend(clone);
+    if (source) {
+      const clone = source.cloneNode();
+      const [pathname, params] = clone.getAttribute('srcset').split('?');
+      const search = new URLSearchParams(params);
+      search.set('width', 3000);
+      clone.setAttribute('srcset', `${pathname}?${search.toString()}`);
+      clone.setAttribute('media', '(min-width: 1440px)');
+      pic.prepend(clone);
+    }
   }
 }
 

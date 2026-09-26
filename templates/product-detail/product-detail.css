@@ -1,0 +1,4 @@
+/* Product detail template – shared PDP chrome for all brands */
+.product-detail-template main > .section:last-of-type {
+  padding-bottom: var(--space-2xl);
+}

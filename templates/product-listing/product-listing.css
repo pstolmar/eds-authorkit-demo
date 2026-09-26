@@ -1,0 +1,35 @@
+/* Product listing template – title + product cards grid, shared by all brands */
+.product-listing-template main > .section:has(.product-cards) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: var(--space-l);
+  padding-block: var(--space-xl) var(--space-3xl);
+
+  > .default-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: var(--space-l);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 2.75rem;
+    font-weight: 500;
+    line-height: var(--line-height-tight);
+    text-align: center;
+    color: var(--brand-black);
+    text-transform: uppercase;
+  }
+
+  .default-content p {
+    margin: 0;
+    text-align: center;
+  }
+}
+
+@media (width >= 900px) {
+  .product-listing-template main > .section:has(.product-cards) {
+    padding-block: var(--space-xl) var(--space-3xl);
+  }
+}

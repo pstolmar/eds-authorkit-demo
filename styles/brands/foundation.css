@@ -1,0 +1,298 @@
+/*
+ * Brand foundation – shared by every brand site (Cutex, Sinful Colors, …).
+ * Loaded only when a page declares `theme` metadata. Brand files
+ * (styles/brands/{theme}.css) override tokens only; blocks and templates
+ * consume tokens so the same code renders every brand.
+ */
+
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/styles/brands/fonts/public-sans-variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Archivo Narrow";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/styles/brands/fonts/archivo-narrow-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Public Sans Fallback";
+  size-adjust: 99%;
+  src: local("Arial");
+}
+
+@font-face {
+  font-family: "Archivo Narrow Fallback";
+  size-adjust: 88%;
+  src: local("Arial Narrow"), local("Arial");
+}
+
+:root {
+  /* palette */
+  --brand-black: #000;
+  --brand-near-black: #181818;
+  --brand-white: #fff;
+  --brand-gray-dark: #333;
+  --brand-gray: #6e6e6e;
+  --brand-gray-muted: #999;
+  --brand-gray-500: #909090;
+  --brand-gray-light: #eee;
+  --brand-gray-lighter: #f7f7f7;
+  --brand-link: #3860be;
+  --brand-link-hover: #c41726;
+  --brand-accent: #ed1e24;
+  --brand-accent-dark: #b4070f;
+  --brand-hero-accent: #bd8dbf;
+
+  /* category accents (used by splat hover + category cards) */
+  --brand-category-1: #65a0d3;
+  --brand-category-2: #b4070f;
+  --brand-category-3: #9c93c5;
+  --brand-category-4: #f274ac;
+
+  /* semantic */
+  --brand-bg: var(--brand-white);
+  --brand-text: var(--brand-gray);
+  --brand-text-strong: var(--brand-black);
+  --brand-heading: var(--brand-black);
+  --brand-inverse: var(--brand-white);
+
+  /* navigation (overridden by nav variants) */
+  --nav-height: 90px;
+  --nav-bg: var(--brand-black);
+  --nav-fg: var(--brand-white);
+  --nav-fg-hover: rgb(255 255 255 / 70%);
+  --nav-border: transparent;
+  --nav-shadow: 0 4px 10px rgb(0 0 0 / 8%);
+  --nav-logo-width: 170px;
+  --nav-logo-height: 47px;
+
+  /* footer */
+  --footer-bg: var(--brand-black);
+  --footer-fg: var(--brand-white);
+  --footer-title-weight: 700;
+  --footer-legal-weight: 400;
+  --footer-legal-transform: none;
+
+  /* type */
+  --font-body: "Public Sans", "Public Sans Fallback", arial, sans-serif;
+  --font-heading: "Public Sans", "Public Sans Fallback", arial, sans-serif;
+  --font-decorative: "Archivo Narrow", "Archivo Narrow Fallback", "Arial Narrow", arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-s: 1rem;
+  --font-size-body: 1.125rem;
+  --font-size-nav: 1.375rem;
+  --font-size-card-title: 1.25rem;
+  --font-size-h3: 2.25rem;
+  --font-size-h2: 2.75rem;
+  --font-size-h1: 3.5rem;
+  --line-height-tight: 1.1;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.5;
+
+  /* spacing */
+  --space-2xs: 2px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-s: 16px;
+  --space-m: 24px;
+  --space-l: 32px;
+  --space-xl: 40px;
+  --space-2xl: 48px;
+  --space-3xl: 80px;
+
+  /* layout */
+  --max-width: 1200px;
+  --max-width-wide: 1480px;
+  --max-width-nav: 1680px;
+  --grid-margin: clamp(20px, 4vw, 48px);
+  --container: min(var(--max-width), 100% - 2 * var(--grid-margin));
+  --container-wide: min(var(--max-width-wide), 100% - 2 * var(--grid-margin));
+  --container-nav: min(var(--max-width-nav), 100% - 2 * var(--grid-margin));
+  --card-width: 276px;
+  --card-gap: 32px;
+
+  /* buttons */
+  --button-bg: var(--brand-black);
+  --button-fg: var(--brand-white);
+  --button-bg-hover: var(--brand-gray-dark);
+  --button-radius: 0;
+
+  /* motion */
+  --transition: 0.3s ease;
+
+  /* Author Kit overrides */
+  --header-height: var(--nav-height);
+  --font-family: var(--font-body);
+  --color-text: var(--brand-text);
+  --color-link: var(--brand-link);
+}
+
+@media (width >= 600px) {
+  :root {
+    --font-size-h1: 4rem;
+  }
+}
+
+@media (width >= 900px) {
+  :root {
+    --font-size-h1: 5rem;
+  }
+}
+
+body.brand-site {
+  color-scheme: light;
+  padding: 0;
+  background-color: var(--brand-bg);
+  color: var(--brand-text);
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  font-weight: 400;
+  line-height: var(--line-height-normal);
+
+  /* Reserve header space until the nav block renders */
+  > header {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--nav-height);
+    background: var(--nav-bg);
+
+    /* `nav (light)` before the block has normalized its classes */
+    &[class~="(light)"],
+    &.light {
+      --nav-bg: var(--brand-white);
+    }
+  }
+
+  > footer {
+    background: var(--footer-bg);
+    color: var(--footer-fg);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 var(--space-s);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: var(--line-height-snug);
+    color: var(--brand-heading);
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: var(--font-size-h2);
+    font-weight: 500;
+    line-height: var(--line-height-tight);
+  }
+
+  h2 {
+    font-size: var(--font-size-h2);
+    font-weight: 400;
+  }
+
+  h3 { font-size: var(--font-size-h3); }
+  h4 { font-size: var(--font-size-card-title); }
+  h5 { font-size: var(--font-size-body); }
+  h6 { font-size: var(--font-size-s); }
+
+  p,
+  ol,
+  ul {
+    margin: 0 0 var(--space-s);
+  }
+
+  li {
+    margin-block: 0;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a {
+    color: var(--brand-link);
+    text-decoration: none;
+    transition: color var(--transition);
+
+    &:hover {
+      color: var(--brand-link-hover);
+    }
+  }
+
+  main img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Author Kit buttons, re-skinned to the brand */
+  main a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 28px;
+    border: 0;
+    border-radius: var(--button-radius);
+    background: var(--button-bg);
+    color: var(--button-fg);
+    font-size: var(--font-size-body);
+    font-weight: 400;
+    line-height: var(--line-height-normal);
+    text-transform: none;
+    transition: background-color var(--transition);
+
+    &:hover {
+      background: var(--button-bg-hover);
+      color: var(--button-fg);
+    }
+  }
+
+  /* Sections */
+  main > .section {
+    > .default-content,
+    > .block-content {
+      width: var(--container);
+      max-width: var(--max-width);
+      margin-inline: auto;
+    }
+
+    &.full-width > .block-content {
+      width: 100%;
+      max-width: none;
+    }
+  }
+
+  /* Author-style section utilities carried over from the source sites */
+  main > .section.align-image-center .default-content picture,
+  main > .section.align-image-center .default-content img {
+    margin-inline: auto;
+  }
+
+  main > .section.text-center .default-content {
+    text-align: center;
+  }
+
+  main > .section.padding-0 {
+    padding: 0;
+  }
+
+  main > .section.padding-top-xxl { padding-top: var(--space-2xl); }
+  main > .section.padding-bottom-xxl { padding-bottom: var(--space-2xl); }
+}
+
+/* Lightweight skeleton for async-rendered demo data */
+.brand-site .is-loading-data {
+  opacity: 0.6;
+}

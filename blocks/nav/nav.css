@@ -1,0 +1,331 @@
+/* Brand navigation – shared by all brand sites. Variants: dark (default), light */
+header.nav {
+  --nav-bg: var(--brand-black);
+  --nav-fg: var(--brand-white);
+  --nav-fg-hover: rgb(255 255 255 / 70%);
+  --nav-border: transparent;
+  --nav-shadow: 0 4px 10px rgb(0 0 0 / 8%);
+
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-height);
+  max-height: none;
+  overflow: visible;
+  background: var(--nav-bg);
+  color: var(--nav-fg);
+
+  &.light {
+    --nav-bg: var(--brand-white);
+    --nav-fg: var(--brand-black);
+    --nav-fg-hover: var(--brand-gray);
+    --nav-border: var(--brand-gray-light);
+    --nav-shadow: none;
+  }
+
+  /* Logo authored for the other style (e.g. demo variant swap) */
+  &.dark[data-authored-style="light"] .nav-brand img,
+  &.light[data-authored-style="dark"] .nav-brand img {
+    filter: invert(1);
+  }
+
+  &.light.is-scrolled {
+    --nav-shadow: 0 4px 10px rgb(0 0 0 / 8%);
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .nav-bar {
+    height: 100%;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: var(--nav-shadow);
+    transition: box-shadow var(--transition);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    width: var(--container-nav);
+    height: 100%;
+    margin-inline: auto;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin-inline-end: auto;
+
+    picture {
+      display: contents;
+    }
+
+    img {
+      display: block;
+      width: auto;
+      height: var(--nav-logo-height);
+      max-width: var(--nav-logo-width);
+      object-fit: contain;
+    }
+  }
+
+  .nav-tools {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  /* hamburger */
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--nav-fg);
+  }
+
+  .nav-toggle-icon,
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    display: block;
+    position: relative;
+    width: 24px;
+    height: 2px;
+    border-radius: 1px;
+    background: currentcolor;
+  }
+
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .nav-toggle-icon::before { top: -7px; }
+  .nav-toggle-icon::after { top: 7px; }
+
+  /* mobile slide-out panel */
+  .nav-panel {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    z-index: 102;
+    width: 300px;
+    max-width: 85vw;
+    height: 100%;
+    padding: 60px 25px 25px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    background: var(--nav-bg);
+    color: var(--nav-fg);
+    transition: right 0.2s ease-in-out;
+  }
+
+  &.is-open .nav-panel {
+    right: 0;
+    box-shadow: -6px 0 20px 5px rgb(0 0 0 / 10%);
+  }
+
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 101;
+    background: rgb(0 0 0 / 40%);
+  }
+
+  &.is-open .nav-overlay {
+    display: block;
+  }
+
+  .nav-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--nav-fg);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 56%;
+      height: 1px;
+      background: currentcolor;
+    }
+
+    &::before { transform: translate(-50%, -50%) rotate(45deg); }
+    &::after { transform: translate(-50%, -50%) rotate(-45deg); }
+  }
+
+  .nav-link {
+    display: block;
+    padding: 8px 0;
+    font-family: var(--font-decorative);
+    font-size: var(--font-size-nav);
+    font-weight: 400;
+    line-height: var(--line-height-normal);
+    text-transform: uppercase;
+    color: var(--nav-fg);
+    transition: color var(--transition);
+
+    &:hover {
+      color: var(--nav-fg-hover);
+    }
+  }
+
+  .has-menu > .nav-link::after {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-left: var(--space-sm);
+    border-right: 2px solid currentcolor;
+    border-bottom: 2px solid currentcolor;
+    vertical-align: middle;
+    transform: rotate(45deg) translateY(-3px);
+  }
+
+  .nav-sub {
+    display: none;
+    padding: 0 0 0 var(--space-s);
+
+    a {
+      display: block;
+      padding: 0.4em 0;
+      font-family: var(--font-body);
+      font-size: var(--font-size-s);
+      color: var(--nav-fg);
+      opacity: 0.8;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .has-menu.is-expanded > .nav-sub {
+    display: block;
+  }
+
+  .has-menu.is-expanded > .nav-link::after {
+    transform: rotate(-135deg) translateY(-1px);
+  }
+}
+
+@media (width >= 900px) {
+  header.nav {
+    .nav-inner {
+      gap: 80px;
+    }
+
+    .nav-brand {
+      margin-inline-end: 0;
+    }
+
+    .nav-toggle,
+    .nav-close,
+    .nav-overlay,
+    &.is-open .nav-overlay {
+      display: none;
+    }
+
+    .nav-panel {
+      position: static;
+      flex: 1 1 auto;
+      width: auto;
+      max-width: none;
+      height: auto;
+      padding: 0;
+      overflow: visible;
+      background: transparent;
+      transition: none;
+    }
+
+    .nav-tools {
+      margin-inline-start: auto;
+    }
+
+    .nav-list {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 8px 16px;
+    }
+
+    .nav-sub {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: 2;
+      min-width: 240px;
+      padding: var(--space-s);
+      background: var(--brand-white);
+      box-shadow: 0 4px 12px rgb(0 0 0 / 15%);
+
+      a {
+        color: var(--brand-black);
+        opacity: 1;
+
+        &:hover {
+          color: var(--brand-gray);
+        }
+      }
+    }
+
+    .has-menu:hover > .nav-sub,
+    .has-menu:focus-within > .nav-sub {
+      display: block;
+    }
+
+    .nav-sub-overview {
+      display: none;
+    }
+  }
+}
+
+body.nav-open {
+  overflow: hidden;
+}

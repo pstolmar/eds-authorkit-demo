@@ -1,0 +1,14 @@
+/* Home template – shared by all brand homepages: full-bleed stacked sections */
+.home-template main > .section {
+  padding: 0;
+
+  > .block-content:has(> .marquee) {
+    width: 100%;
+    max-width: none;
+  }
+
+  > .block-content:has(> .product-cards.featured) {
+    width: var(--container);
+    max-width: var(--max-width);
+  }
+}

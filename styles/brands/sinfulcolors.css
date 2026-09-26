@@ -1,0 +1,17 @@
+/*
+ * Sinful Colors brand tokens. Structure and components come from
+ * foundation.css, shared templates and shared blocks.
+ */
+:root {
+  --nav-logo-width: 170px;
+  --nav-logo-height: 47px;
+
+  /* Category palette drives the splat hover and category cards */
+  --brand-category-1: #65a0d3;
+  --brand-category-2: #b4070f;
+  --brand-category-3: #9c93c5;
+  --brand-category-4: #f274ac;
+  --brand-hero-accent: #bd8dbf;
+  --brand-accent: #ed1e24;
+  --brand-accent-dark: #b4070f;
+}

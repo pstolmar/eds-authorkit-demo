@@ -1,0 +1,17 @@
+/*
+ * Cutex brand tokens. Structure and components come from foundation.css,
+ * shared templates and shared blocks — only brand values live here.
+ */
+:root {
+  --nav-logo-width: 170px;
+  --nav-logo-height: 48px;
+
+  /* Cutex footer shows a bold wordmark + uppercase-free legal links */
+  --footer-title-weight: 700;
+  --footer-legal-weight: 400;
+
+  /* Cutex product imagery is photographed on white — glow hover */
+  --card-hover-glow: rgb(214 60 170 / 22%);
+  --brand-accent: #d63caa;
+  --brand-accent-dark: #a82485;
+}

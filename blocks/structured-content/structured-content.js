@@ -1,22 +1,14 @@
+import { getConfig } from '../../scripts/ak.js';
 import { renderField, getBuiltInHints } from '../../scripts/utils/schema-hints.js';
+import { fetchStructured } from '../../scripts/utils/structured.js';
 
 const SKIP = new Set(['_display', 'slug', 'currency', 'name', 'price', 'rating', 'inStock', 'featured']);
 
-function getOwnerRepo() {
-  let { hostname } = window.location;
-  const proxy = document.querySelector('meta[property="hlx:proxyUrl"]');
-  if (hostname === 'localhost' && proxy) hostname = proxy.content;
-  const parts = hostname.split('.')[0].split('--');
-  const [, repo, owner] = parts;
-  return { owner, repo };
-}
-
 async function fetchSC(slug) {
-  const { owner, repo } = getOwnerRepo();
-  const url = `https://da-sc.adobeaem.workers.dev/live/${owner}/${repo}/structured/${encodeURIComponent(slug)}`;
-  const resp = await fetch(url);
-  if (!resp.ok) throw new Error(`${resp.status}`);
-  return resp.json();
+  const { mount = '' } = getConfig();
+  const json = await fetchStructured(`${mount}/structured/${encodeURIComponent(slug)}`);
+  if (!json) throw new Error(`Could not load ${slug}`);
+  return json;
 }
 
 function renderCardContent(container, json) {

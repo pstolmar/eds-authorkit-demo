@@ -1,0 +1,226 @@
+/* Product Detail – variants: (default) accordion, simple */
+.section:has(> .block-content > .product-detail) {
+  padding-block: var(--space-l);
+}
+
+.product-detail {
+  .pdp-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+  }
+
+  .pdp-gallery {
+    width: 100%;
+  }
+
+  .pdp-viewport {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+
+    picture {
+      display: contents;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .pdp-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    margin: var(--space-l) 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 0;
+    }
+  }
+
+  .pdp-thumb {
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    border: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: none;
+    opacity: 0.5;
+    transition: opacity var(--transition);
+
+    &.is-active,
+    &:hover {
+      opacity: 1;
+    }
+
+    picture {
+      display: contents;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  .pdp-summary {
+    width: 100%;
+
+    > h1 {
+      margin: 0;
+      padding-bottom: var(--space-s);
+      font-family: var(--font-body);
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: var(--line-height-snug);
+      color: var(--brand-black);
+      text-transform: none;
+    }
+
+    > p {
+      margin: 0;
+      padding-block: var(--space-xs);
+      font-size: var(--font-size-body);
+      color: var(--brand-text);
+    }
+
+    > p a {
+      color: var(--brand-text);
+      text-decoration: underline;
+    }
+
+    > p.pdp-meta + p.pdp-meta {
+      padding-top: 0;
+    }
+  }
+
+  .pdp-highlights {
+    margin: 0;
+    padding: var(--space-xs) 0 var(--space-xs) var(--space-m);
+    list-style: disc;
+
+    li {
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-normal);
+    }
+  }
+
+  .pdp-accordion {
+    margin: 0;
+    padding: var(--space-l) 0;
+    list-style: none;
+  }
+
+  .pdp-accordion-item {
+    margin: 0;
+  }
+
+  .pdp-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--space-m) var(--space-s);
+    border: 0;
+    border-bottom: 1px solid var(--brand-gray-500);
+    background: none;
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    font-weight: 400;
+    line-height: var(--line-height-normal);
+    color: var(--brand-text);
+    text-align: left;
+    text-transform: uppercase;
+
+    &::after {
+      content: "";
+      flex-shrink: 0;
+      width: 12px;
+      height: 12px;
+      background:
+        linear-gradient(currentcolor, currentcolor) center / 10px 1px no-repeat,
+        linear-gradient(currentcolor, currentcolor) center / 1px 10px no-repeat;
+    }
+
+    &[aria-expanded="true"]::after {
+      background: linear-gradient(currentcolor, currentcolor) center / 10px 1px no-repeat;
+    }
+  }
+
+  .pdp-accordion-item:first-child .pdp-accordion-header {
+    border-top: 1px solid var(--brand-gray-500);
+  }
+
+  .pdp-accordion-panel {
+    padding: var(--space-s);
+    border-bottom: 1px solid var(--brand-gray-500);
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+      list-style: disc;
+    }
+
+    li {
+      margin-bottom: 6px;
+      font-size: var(--font-size-body);
+      color: var(--brand-text);
+    }
+  }
+
+  .pdp-commerce:empty {
+    display: none;
+  }
+}
+
+@media (width >= 900px) {
+  .section:has(> .block-content > .product-detail) {
+    padding-block: var(--space-3xl);
+  }
+
+  .product-detail {
+    .pdp-wrapper {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      gap: var(--space-s);
+    }
+
+    .pdp-gallery {
+      flex: 0 1 600px;
+      min-width: 0;
+    }
+
+    .pdp-thumb {
+      width: 80px;
+      height: 80px;
+    }
+
+    .pdp-thumbs {
+      gap: var(--space-m);
+    }
+
+    .pdp-summary {
+      display: flex;
+      flex: 0 1 600px;
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: 0;
+
+      > * {
+        width: 100%;
+        max-width: 500px;
+      }
+    }
+  }
+}
